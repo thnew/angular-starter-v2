@@ -1,0 +1,16 @@
+<h2>My Books</h2>
+
+<a [routerLink]="['new']" class="btn btn-default">Create new book</a>
+
+<ul *ngIf="books; else noBooks">
+  <li *ngFor="let book of books">
+    <thomas-book-preview [book]="book" (bookselected)="onBookSelect($event)">
+    </thomas-book-preview>
+  </li>
+</ul>
+
+<ng-template #noBooks>No books found :(</ng-template>
+
+<!--<pre>
+  {{books | json}}
+</pre>-->

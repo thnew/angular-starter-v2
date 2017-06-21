@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="saveBook()">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" id="title" formControlName="title">
+    <div [hidden]="!form.get('title').hasError('required')">
+      Enter a tilte
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="subtitle">Subtitle</label>
+    <input type="text" id="subtitle" formControlName="subtitle" />
+    <div [hidden]="!form.get('subtitle').hasError('required')">
+      This is required
+    </div>
+    <div [hidden]="!form.get('subtitle').hasError('minlength')">
+      Min 6 letters!
+    </div>
+    <div [hidden]="!form.get('subtitle').hasError('maxlength')">
+      Max 20 letters!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="isbn">ISBN</label>
+    <input type="text" id="isbn" formControlName="isbn">
+  </div>
+
+  <fieldset formGroupName="publisher">
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" formControlName="name">
+    </div>
+    <div class="form-group">
+
+      <label>Url:</label>
+      <input type="text" formControlName="url">
+    </div>
+
+  </fieldset>
+
+  <div [hidden]="!form.get('isbn').hasError('isbn')">
+    Not a valid ISBN
+  </div>
+
+  <button type="submit" [disabled]="form.invalid">Save</button>
+</form>
